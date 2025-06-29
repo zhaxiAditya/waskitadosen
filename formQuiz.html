@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Tugas Quiz</title>
+</head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+        }
+            body {
+            background-color: #D9D9D9;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 400;
+        }
+        h2 {
+            font-weight: 400;
+            font-size: 18px;
+        }
+        h3 {
+            font-size: 16px;
+            font-weight: 400;
+        }
+        h4 {
+            font-size: 18px;
+            font-weight: 400;
+        }
+        nav {
+            background-color: #4A1B9D;
+            display: flex;
+            padding: 10px 5%;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            color: #DADADA;
+            box-sizing: border-box;
+        }
+        .focus {
+            display: none;
+            content: '';
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            background-color: #515151cc;
+            z-index: 98;
+        }
+        img {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+        nav span {
+            display: flex;
+            align-items:center;
+            gap: 5px;
+            position: relative;
+        }
+        /*header*/
+        header {
+            background-image: url(assets/tekstur.jpg);
+            background-size: cover;
+            height: 155px;
+            margin: 30px 0px;
+            padding: 0px 5%;
+            align-items: end;
+            display: flex;
+            justify-content: space-between;
+            
+
+        }
+        header span, header button {
+            position: relative;
+            z-index: 90;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+
+        }
+        header .addKelas button {
+            height: 40px;
+            width: 120px;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 155px;
+            background-color: rgba(298, 96, 97, 0.6);
+            z-index: 1;
+            transform: translateX(-5%);
+        }
+        .dropleft {
+            background-color: #FAFAFA;
+            padding: 5px 10px;
+            position: relative;
+            display: none;
+            z-index: 97;
+            transform: translate(-140px, 40px);
+        }
+        label {
+            padding: 5px 20px;
+            background-color: #DADADA;
+            display: flex;
+            gap: 10px;
+            margin: 5px 0px;
+        }
+        section {
+            padding: 0px 5%;
+        }
+        .kelas {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .cards span {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cards textarea {
+            width: 100%;
+            height: 100px;
+            font-size: 18px;
+            margin: 10px 0px;
+        }
+        .cards input {
+            width: 100%;
+            margin: 10px 0px;
+            height: 30px;
+        }
+        .nonActive {
+            display: none;
+        }
+        .cards {
+            background-color: #FAFAFA;
+            padding: 10px 20px;
+            border-radius: 5px;
+
+        }
+        .alert {
+            background-color: red;
+            border: none;
+            color: #FAFAFA;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .tambahkan {
+            background-color: green;
+            border: none;
+            color: #FAFAFA;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .simpan {
+            margin: 30px 5%;
+            text-align: end;
+        }
+        .simpan a {
+            background-color: greenyellow;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #FAFAFA;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #752A89;
+            width: 100%;
+            height: 20px;
+            position: fixed;
+            bottom: 0px;
+            z-index: 99;
+            font-size: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FAFAFA;
+        }
+        .waktu {
+            background-color: #FAFAFA;
+            padding: 10px 20px;
+            height: 160px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .text {
+            display: flex;
+            justify-content: space-between;
+        }
+        .jam {
+            display: flex;
+            margin: 10px 0px;
+            gap: 20px;
+            align-items: center;
+        }
+        .jam span input {
+            margin: 0px 10px;
+            padding: 5px 10px;
+        }
+        .tugas {
+            background-color: #FAFAFA;
+            padding: 20px;
+        }
+        .contener {
+            display: flex;
+            padding: 20px 0px;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        .conten {
+            width: 95%;
+            padding: 0px 20px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+<body>
+    <nav>
+        <span>
+            <img src="assets/Logo Gram.png" alt="">
+            <h2>WASKITA</h2>
+        </span>
+        <span>
+            <img src="assets/photo.jpg" style="border-radius: 25px; border: 2px solid #FAFAFA; margin: 0px 0px 0px 20px;" alt="">
+        </span>
+    </nav>
+    <header>
+        <span>
+            <h1>2025 - Genap</h1>
+            <h2><span id="kelas"></span> - TUGAS PROJEK UI/UX</h2>
+        </span>
+        <div class="addKelas" >
+            <div class="dropleft" id="dropleft">
+                <label for=""><input type="checkbox" name="kelas" id="si03" value="SI03" ><h3>SI03</h3></label>
+                <label for=""><input type="checkbox" name="kelas" checked id="si06" value="SI06"><h3>SI06</h3></label>
+                <label for=""><input type="checkbox" name="kelas" id="si07" value="SI07" ><h3>SI07</h3></label>
+            </div>
+            <button id="addKelas">Kelas</button>
+        </div>
+    </header>
+    <section>
+        <div class="waktu">
+            <div class="text">
+                <h4 >waktu</h4>
+                <img src="assets/dropDwon.png" alt="" style="width: 18px; height: 18px;">
+            </div>
+            <div class="jam">
+                <h4 style="width: 100px; font-size: 16px;">Mulai</h4>
+                <span>
+                    <input type="date">
+                    <input type="time">
+                </span>
+            </div>
+            <div class="jam">
+                <h4 style="width: 100px; font-size: 16px;">Selesai</h4>
+                <span>
+                    <input type="date">
+                    <input type="time">
+                </span>
+            </div>
+        </div>
+        <br>
+        <div class="tugas" id="tugas">
+            <h4>Tugas Quiz</h4>
+            <div class="contener">
+                <h4>1</h4>
+                <div class="conten">
+                    <input type="text" style="width: 100%; height: 40px; padding: 0px 10px;">
+                    <br>
+                    <div id="content">
+
+                    </div>
+                    <p id="Option" onclick="option()">add Option</p>
+                </div>
+                <span style="display: flex; flex-direction: column; gap: 5px;">
+                    <img src="assets/Group 172.png" alt="" style="width: 20px; height: 20px;" onclick="tambahTugas()">
+                    <img src="assets/Group 171.png" alt="" style="width: 20px; height: 20px;" class="hapus">
+                </span>
+            </div>
+        </div>
+    </section>
+    <div class="simpan">
+        <a href="kelas.html" style="background-color: red;">Batal</a>
+        <a href="kelas.html" style="background-color: #03AB6E;">Simpan</a>
+    </div>
+    <footer>© 2025 Universitas Amikom Yogyakarta | Dikembangkan oleh Kelompok Firefly | Tugas Proyek UI/UX</footer>
+</body>
+<script>
+    const buttonKelas = document.getElementById('addKelas');
+    const dropleft = document.getElementById('dropleft');
+    buttonKelas.addEventListener('click', function(){
+        if(dropleft.style.display === 'none' || dropleft.style.display === ''){
+            dropleft.style.display = 'block';
+        }else {
+            dropleft.style.display = 'none';
+        }
+    })
+
+    function updateCheckedValues() {
+    const checked = document.querySelectorAll('input[name="kelas"]:checked');
+    const values = Array.from(checked).map(cb => cb.value);
+    document.getElementById('kelas').innerText = values.length > 0 ? values.join("/") : "-";
+    
+    console.log(values)
+    }
+
+    // Tambahkan event listener ke semua checkbox
+    const checkboxes = document.querySelectorAll('input[name="kelas"]');
+    checkboxes.forEach(cb => {
+    cb.addEventListener('change', updateCheckedValues);
+    });
+
+    // Jalankan sekali saat halaman dimuat
+    updateCheckedValues();
+
+    const tugasKelas = document.getElementById('tugas');
+
+    function tambahTugas(){
+        const div = document.createElement('div')
+        const jumlahTugas = document.querySelectorAll('.contener').length;
+        const nomor = jumlahTugas + 1;
+        div.classList.add('contener')
+        div.innerHTML = `
+            <h4>${nomor}</h4>
+            <div class="conten">
+                <input type="text" style="width: 100%; height: 40px; padding: 0px 10px;">
+                <br>
+                <div id="content">
+                </div>
+                <p id="Option" onclick="option()">add Option</p>
+            </div>
+            <span>
+                <img src="assets/Group 172.png" alt="" style="width: 20px; height: 20px;" onclick="tambahTugas()">
+                <img src="assets/Group 171.png" alt="" style="width: 20px; height: 20px;" class="hapus">
+            </span>
+        `;
+
+        const tombolHapus = div.querySelector('.hapus');
+        tombolHapus.addEventListener('click', function () {
+            div.remove();
+        });
+        tugasKelas.appendChild(div)
+    }
+
+        function hapus (){
+            div.remove();
+
+            materiKelas.appendChild(div)
+        }
+    function option(){
+        const pilihan = document.getElementById('content')
+        const div = document.createElement('div')
+        div.innerHTML = `
+            <input type="text" style="width: 200px; margin: 10px 0px; border:none; border-bottom:1px solid black; background-color: #FAFAFA;">
+        `
+        pilihan.appendChild(div)
+    }
+</script>
+</html>

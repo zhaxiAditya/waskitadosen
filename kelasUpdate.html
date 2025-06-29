@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Document</title>
+</head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+        * {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+        }
+            body {
+            background-color: #D9D9D9;
+        }
+        body::-webkit-scrollbar {
+            display: none;
+        }
+        h1 {
+            font-size: 26px;
+            font-weight: 400;
+        }
+        h2 {
+            font-weight: 600;
+            font-size: 18px;
+        }
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        h4 {
+            font-size: 18px;
+            font-weight: 400;
+        }
+        nav {
+            background-color: #4A1B9D;
+            display: flex;
+            padding: 10px 5%;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            color: #DADADA;
+            box-sizing: border-box;
+        }
+        .focus {
+            display: none;
+            content: '';
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            background-color: #515151cc;
+            z-index: 98;
+        }
+        img {
+            width: 40px;
+            height: 40px;
+            font-size: 18px;
+        }
+        nav span {
+            display: flex;
+            align-items:center;
+            gap: 5px;
+            position: relative;
+        }
+        nav a {
+            display: flex;
+            flex-direction: row;
+            text-decoration: none;
+            color: #FAFAFA;
+            align-items:center;
+            gap: 5px;
+            position: relative;
+        }
+        /*header*/
+        header {
+            background-image: url(assets/tekstur.jpg);
+            background-size: cover;
+            height: 155px;
+            margin: 30px 0px;
+            padding: 0px 5%;
+            align-items: end;
+            display: flex;
+            justify-content: space-between;
+            
+
+        }
+        header span, header button {
+            position: relative;
+            z-index: 90;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+
+        }
+        header .addKelas button {
+            height: 40px;
+            width: 120px;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 155px;
+            background-color: rgba(298, 96, 97, 0.6);
+            z-index: 1;
+            transform: translateX(-5%);
+        }
+        header button{
+            padding: 5px 20px;
+        }
+        /*section*/
+        section {
+            padding: 0px 5%;
+        }
+        footer {
+            background-color: #752A89;
+            width: 100%;
+            height: 20px;
+            position: fixed;
+            bottom: 0px;
+            z-index: 99;
+            font-size: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #FAFAFA;
+        }
+        .kelas {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .kelas a {
+            display: flex;
+            align-items: center;
+            padding: 5px 10px;
+        }
+        a img {
+            width: 20px;
+            height: 20px;
+            padding-right:10px;
+        }
+        .pertemuan {
+            display: flex;
+            background-color: #FAFAFA;
+            padding: 10px 10px;
+            width: 100%;
+            justify-content: end;
+            align-items: center;
+        }
+        .pertemuan h2 {
+            position: absolute;
+            text-align: center;
+            width: 90%;
+            z-index: 1;
+        }
+        #option {
+            position: absolute;
+            display: none;
+            right: 5%;
+            transform: translate(-15px, -10px);
+            background-color: #FAFAFA;
+            width: 180px;
+            padding: 20px 20px;
+            text-align: center;
+            border: 1px solid black;
+            flex-direction: column;
+            gap: 2px;
+        }
+        .option a {
+            font-weight: 400;
+            padding: 10px 20px;
+            background-color: #DADADA;
+            text-decoration: none;
+            color: #000000;
+            font-size: 18px;
+        }
+    </style>
+<body>
+    <a href="assets/Group 172.png"></a>
+    <nav>
+        <a href="">
+            <img src="assets/Logo Gram.png" style="width: 40px; height: 40px;" alt="">
+            <h2>WASKITA</h2>
+        </a>
+        <span>
+            <img src="assets/photo.jpg" style="border-radius: 25px; border: 2px solid #FAFAFA; margin: 0px 0px 0px 20px;" alt="">
+        </span>
+    </nav>
+    <header>
+        <span>
+            <h1>2025 - Genap</h1>
+            <h2>SI06 - TUGAS PROJEK UI/UX</h2>
+        </span>
+        <a href="editKelas.html"><button>UBAH</button></a>
+    </header>
+    <section>
+        <h2>Informasi Kelas</h2>
+        <div class="content">
+            <div class="kelas">
+                <div class="pertemuan">
+                    <h2>Pertemuan 1</h2>
+                    <span>
+                        <div class="option" id="option">
+                            <a href="formEsai.html">Tugas Esai</a>
+                            <a href="formQuiz.html">Tugas Quiz</a>
+                            <a href="tugasFIle.html">Tugas File</a>
+                            <a href="uploadFile.html">Upload File</a>
+                            <a href="uploadLink.html">Upload Link</a>
+                        </div>
+                        <img src="assets/Group 172.png" alt="" style="width: 20px; height: 20px; position: relative; z-index: 9;" id="buka">
+                    </span>
+                </div>
+                <a href="listMahasiswa.html"><img src="assets/file-check (2).png" alt="">Tugas Esai</a>
+                <a href="listMahasiswa.html"><img src="assets/file-check (2).png" alt="">Tugas Quiz</a>
+                <a href="listMahasiswa.html"><img src="assets/file-check (2).png" alt="">Tugas Upload</a>
+                <a href="https://drive.google.com/file/d/1BsMlW_m-avCKJlOCtKC76T-gTn7aL0N9/view?usp=drive_link"><img src="assets/file-check (2).png" alt="">Materi File</a>
+                <a href="https://www.youtube.com/watch?v=5KNoTp3kLlM"><img src="assets/file-check (2).png" alt="">Sejarah Jatuhnya Kerajaan TERBESAR Dan TERKUAT Di DUNIA | Kekaisaran Romawi | Historia #1</a>
+                <iframe width="400px" height="200px" style="border-radius: 5px; margin: auto;" src="https://youtube.com/embed/5KNoTp3kLlM?si=k1qlYSehelJc5IzM" title="video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+    <footer>© 2025 Universitas Amikom Yogyakarta | Dikembangkan oleh Kelompok Firefly | Tugas Proyek UI/UX</footer>
+</body>
+<script>
+    const buka = document.getElementById('buka');
+    const pilih = document.getElementById('option');
+    buka.addEventListener('click', function(){
+        if(pilih.style.display === "none" || pilih.style.display === ""){
+            pilih.style.display = 'flex';
+        }else {
+            pilih.style.display = 'none';
+        }
+    })
+</script>
+</html>

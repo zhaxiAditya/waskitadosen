@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Document</title>
+</head>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+  * {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        font-weight: 400;
+
+    }
+    /*Css untuk navbar*/
+    body {
+        background-color: #D9D9D9;
+    }
+    body::-webkit-scrollbar {
+            display: none;
+        }
+        nav {
+            background-color: #4A1B9D;
+            display: flex;
+            padding: 10px 5%;
+            justify-content: space-between;
+            align-items: center;
+            height: 50px;
+            color: #DADADA;
+            box-sizing: border-box;
+        }
+        header {
+            box-sizing: border-box;
+            background-color: #03AB6E;
+            height: 155px;
+            margin: 30px 0px;
+            padding: 0px 5%;
+            align-items: end;
+            display: flex;
+            justify-content: space-between;
+        }
+        header span, header button {
+            position: relative;
+            z-index: 90;
+            margin-bottom: 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: none;
+
+        }
+        header .addKelas button {
+            height: 40px;
+            width: 120px;
+        }
+    .focus {
+        display: none;
+        content: '';
+        width: 100%;
+        height: 100vh;
+        position: absolute;
+        background-color: #515151cc;
+        z-index: 98;
+    }
+    img {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    nav span {
+        display: flex;
+        align-items:center;
+        gap: 5px;
+        position: relative;
+    }
+    nav a {
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        color: #FAFAFA;
+        align-items:center;
+        gap: 5px;
+        position: relative;
+    }
+    /*Css untuk nnotifikasi*/
+    .notif::after {
+    content: "1";
+    position: absolute;
+    z-index: 97;
+    transform: translateX(-20px);
+    background-color: #FF9919;
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+    text-align: center;
+    border-radius: 7px;
+    }
+    .notif {
+        height: 40px;
+    }
+    .alert {
+        width: 300px;
+        height: 100vh;
+        background-color: #D9D9D9;
+        position: fixed;
+        z-index: 99;
+        right: 0px;
+        transform: translateX(100%);
+        transition: ease-in 200ms;
+    }
+    .alert.active {
+        transform: translateX(0px);
+    }
+    /*Css untuk isi*/
+    .cari {
+        color: #515151;
+        display: flex;
+        justify-content: end;
+        align-items: end;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px 5%;
+    }
+    .cari input[type = "text"] {
+        width: 400px;
+        height: 30px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #515151;
+        background-color: #D9D9D9;
+        padding: 0px 10px;
+    }
+    .cari span {
+        width: 150px;
+        height: 30px;
+        display: flex;
+        justify-content: center;
+        font-size: 16px;
+        align-items: center;
+        border-radius: 5px;
+        color: #000000;
+        gap: 10px;
+        border: 1px solid black;
+    }
+    .filter {
+        display: none;
+        width: 150px;
+        background-color: #FAFAFA;
+        position: absolute;
+        transform: translateY(120px);
+        color: #000000;
+        z-index: 99;
+
+    }
+    section {
+        padding: 0px 5% 20px 5%;
+    }
+    .filter form {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        align-items: center; 
+    }
+    .alert .alertList div {
+        display: flex;
+        background-color: #FAFAFA;
+        height: 60px;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .alert .alertList div::before {
+        position: absolute;
+        left: 0px;
+        content: "";
+        width: 10px;
+        height: 60px;
+        background-color: #04D63C;
+    }
+    footer {
+        background-color: #752A89;
+        width: 100%;
+        height: 20px;
+        position: fixed;
+        bottom: 0px;
+        z-index: 99;
+        font-size: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FAFAFA;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    tr {
+        height: 50px;
+    }
+    tr:nth-child(even){
+        background-color: #FAFAFA;
+    }
+    tr:nth-child(odd){
+        background-color: #E5EDF4;
+    }
+    tr, th {
+        color: #FAFAFA;
+        font-weight: 600;
+
+    }
+    td {
+        font-weight: 600;
+        text-align: center;
+        color: #000000;
+        border-left: 1px solid #D9D9D9;
+        border-right: 1px solid #D9D9D9;
+    }
+    .false {
+        color: red;
+    }
+    .true {
+        color: #04D63C;
+    }
+    .text {
+        display: flex;
+        margin: 0px 5%;
+        justify-content: space-between;
+    }
+    .page {
+        display: flex;
+        gap: 10px;
+        padding: 10px 0px;
+        margin: 0px 0px 20px 0px
+    }
+    .page h5{
+        background-color: #FAFAFA;
+        border-radius: 2px;
+        padding: 5px 10px;
+    }
+    h5.sekarang {
+        background-color: #000000;
+        color: #FAFAFA;
+    }
+    table a {
+        color: #000000;
+    }
+
+</style>
+<body>
+    <div class="alert" id="alert">
+        <nav>        
+            <i class="fa-solid fa-xmark" id="tutup"></i>    
+            <h3 style="width: 200px;">Notifikasi</h3>
+        </nav>
+        <div class="alertList" id="alertList">
+        </div>
+    </div>
+    <div class="focus" id="backgroundGelap"></div>
+    <nav>
+        <a href="listKelas.html">
+            <img src="assets/Logo Gram.png" style="width: 40px; height: 40px;" alt="">
+            <h3>WASKITA</h3>
+        </a>
+        <span>
+            <div class="notif">
+                <img src="assets/notification.png" alt="" id="buka">
+            </div>
+            <img src="assets/photo.jpg" style="border-radius: 25px; border: 2px solid #FAFAFA; margin: 0px 0px 0px 20px;" alt="">
+        </span>
+    </nav>
+    <header>
+        <span>
+            <a href="kelas.html" style="text-decoration: none; color: #000000;"><h2>SI06 - Tugas PROJEK UI/UX</h2></a>
+            <h3>Evaluasi Pemahaman Materi</h3>
+        </span>
+    </header>
+    <div class="cari">
+        <input type="text" placeholder="Search" id="search" onclick="cari">
+        <span id="buttomFilter">
+            <img src="assets/equalizer.png" style="width: 20px; height: 20px;" alt="">
+            Filter
+        </span>
+        <div class="filter" id="filter">
+            <form action="">
+                <div class="pilihan" style=" width: 90%; padding: 10px; font-size: 16px;">
+                    <label style="background-color: #DADADA; padding: 5px 10px; margin: 0px 0px 10px 0px; display: flex; justify-content: space-between;" onclick="tampilkan"><input type="radio" style="margin: 0px 20px 0px 0px; " checked name="sort" id="urut" value="asc">  A-Z</label>
+                    <label style="background-color: #DADADA; padding: 5px 10px; display: flex; justify-content: space-between;" onclick="tampilkan"><input type="radio" style="margin: 0px 20px 0px 0px;" name="sort" id="urut" value="desc"> Z-A</label>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </header>
+    <section>
+        <table id="table">
+            <tr style="background-color: #752A89;">
+                <th>NIM</th>
+                <th >Nama</th>
+                <th>Waktu</th>
+                <th>Status</th>
+                <th>Nilai</th>
+            </tr>
+        </table>
+    </section>
+    <div class="text">
+        <div class="page">
+            <h5><i class="fa-solid fa-angle-up" style="transform: rotate(270deg);"></i> Back</h5>
+            <h5 class="sekarang">1</h5>
+            <h5>2</h5>
+            <h5>3</h5>
+            <h5>4</h5>
+            <h5>Next <i class="fa-solid fa-angle-up" style="transform: rotate(90deg);"></i></h5>
+        </div>
+        <div class="guild">
+            <h5>Mengumpilkan Tepat Waktu =<span style="color: #04D63C;">Berwarna Hijau</span></h5>
+            <h5>telat mengumpulkan = <span style="color: red;">Berwarna Merah</span></h5>
+        </div>
+    </div>
+    <footer>© 2025 Universitas Amikom Yogyakarta | Dikembangkan oleh Kelompok Firefly | Tugas Proyek UI/UX</footer>
+</body>
+<script>
+    const alert = document.getElementById("alert");
+    const focus = document.getElementById('backgroundGelap');
+    const tombolbuka = document.getElementById("buka");
+    const tomboltutup = document.getElementById('tutup');
+
+    tombolbuka.addEventListener("click", function(){
+        alert.classList.add("active")
+        focus.style.display = "block"
+    })
+        tomboltutup.addEventListener("click", function(){
+        alert.classList.remove("active")
+        focus.style.display = "none"
+    })
+
+    const filter = document.getElementById("filter");
+    const tombol = document.getElementById("buttomFilter")
+    tombol.addEventListener('click', function(){
+        if(filter.style.display === "block"){
+            filter.style.display = "none"
+        } else {
+            filter.style.display = "block"
+        }
+    })
+
+const mahasiswa = [
+  {
+    nim: "22.12.2655",
+    nama: "Muhammad Hadiq Fauzan",
+    tanggal: "29 Mei 2025, 10:44 WIB",
+    statusTugas: "Sudah",
+    nilai: "100/100",
+    terlambat: "false",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.2626",
+    nama: "Gianego Yusuga",
+    tanggal: "25 Mei 2025, 23:54 WIB",
+    statusTugas: "Sudah",
+    nilai: "95/100",
+    terlambat: "true",
+    link: "nilaiEsai.html"
+  },
+  {
+    nim: "22.12.2622",
+    nama: "Daffa Iqbal Azhari",
+    tanggal: "30 Mei 2025, 14:06 WIB",
+    statusTugas: "Sudah",
+    nilai: "65/100",
+    terlambat: "false",
+    link: "nilaiQuiz.html"
+  },
+  {
+    nim: "22.12.2628",
+    nama: "Zhaxi Aditya Nugraha",
+    tanggal: "25 Mei 2025, 23:55 WIB",
+    statusTugas: "Sudah",
+    nilai: "90/100",
+    terlambat: "true",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.2644",
+    nama: "Bayu Dwi Kresnawan",
+    tanggal: "27 Mei 2025, 00:12 WIB",
+    statusTugas: "Sudah",
+    nilai: "85/100",
+    terlambat: "true",
+    link: "nilaiQuiz.html"
+  },
+  {
+    nim: "22.12.2641",
+    nama: "Dimas Muntaz Maulana Rakhmat",
+    tanggal: "30 Mei 2025, 01:34 WIB",
+    statusTugas: "Sudah",
+    nilai: "85/100",
+    terlambat: "false",
+    link: "nilaiEsai.html"
+  },
+  {
+    nim: "22.12.2655",
+    nama: "Sani Priyaharjo",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.1111",
+    nama: "Albert Einstein",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiQuiz.html"
+  },
+  {
+    nim: "22.12.2222",
+    nama: "Ludwig van Beethoven",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiEsai.html"
+  },
+  {
+    nim: "22.12.3333",
+    nama: "Al-Khawarizmi",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.5555",
+    nama: "Aulia Ramadhani",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiEsai.html"
+  },
+  {
+    nim: "22.12.3334",
+    nama: "Kevin Hartono",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiQuiz.html"
+  },
+  {
+    nim: "22.12.6666",
+    nama: "Maria Sanchez",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.7777",
+    nama: "Hiroshi Tanaka",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiEsai.html"
+  },
+  {
+    nim: "22.12.8888",
+    nama: "Olivia Jensen",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiQuiz.html"
+  },
+  {
+    nim: "22.12.9999",
+    nama: "Farhan Al-Muqri",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.0101",
+    nama: "Anastasia Ivanova",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiEsai.html"
+  },
+  {
+    nim: "22.12.0202",
+    nama: "Samuel Thompson",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiQuiz.html"
+  },
+  {
+    nim: "22.12.0303",
+    nama: "Li Wei",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.0404",
+    nama: "Nadine Putri",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiEsai.html"
+  },
+  {
+    nim: "22.12.0505",
+    nama: "Bintang Timur Gemilang",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiQuiz.html"
+  },
+  {
+    nim: "22.12.0606",
+    nama: "Genta Supriadi Genus Puspa Kencana",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiFile.html"
+  },
+  {
+    nim: "22.12.0707",
+    nama: "Lupa",
+    tanggal: "-",
+    statusTugas: "Belum",
+    nilai: "-/100",
+    terlambat: "false",
+    link: "nilaiEsai.html"
+  }
+];
+
+
+const table = document.getElementById('table');
+const search = document.getElementById('search');
+const kelasData = mahasiswa; // rename alias agar sesuai dengan fungsi pencarian dan sort
+
+// Fungsi menampilkan semua data awal
+function tampilkanDataAwal() {
+    hasilData(kelasData);
+}
+
+// Fungsi render hasil ke tabel
+function hasilData(data) {
+    // Hapus semua <tr> kecuali header
+    const rows = table.querySelectorAll('tr:not(:first-child)');
+    rows.forEach(row => row.remove());
+
+    data.forEach((mhs) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${mhs.nim}</td>
+            <td style="width: 350px;">${mhs.nama}</td>
+            <td class="${mhs.terlambat}">${mhs.tanggal}</td>
+            <td>${mhs.statusTugas}</td>
+            <td><a href="nilaiQuiz.html">${mhs.nilai}</a></td>
+        `;
+        table.appendChild(tr);
+    });
+}
+
+// Event listener pencarian
+search.addEventListener('keyup', function(){
+    const keyword = this.value.trim().toLowerCase();
+    if (keyword === "") {
+        tampilkanDataAwal();
+    } else {
+        tolongDicari(keyword);
+    }
+});
+
+// Fungsi pencarian berdasarkan nama
+function tolongDicari(keyword){
+    const cariData = kelasData.filter(kelas => 
+        kelas.nim.toLowerCase().includes(keyword)||kelas.nama.toLowerCase().includes(keyword)
+    );
+    hasilData(cariData);
+}
+
+// Fungsi sort A-Z dan Z-A
+function sortData(order){
+    const kelasSort = [...kelasData].sort((a,b) => {
+        if(order === "asc"){
+            return a.nama.localeCompare(b.nama);
+        } else {
+            return b.nama.localeCompare(a.nama);
+        }
+    });
+
+    hasilData(kelasSort);
+}
+
+// Event listener untuk radio sort
+document.querySelectorAll('input[name="sort"]').forEach(radio => {
+    radio.addEventListener("change", function () {
+        sortData(this.value);
+    });
+});
+
+// Jalankan tampilan awal saat halaman dimuat
+tampilkanDataAwal();
+
+</script>
+</html>
